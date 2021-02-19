@@ -10,20 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_18_211724) do
+ActiveRecord::Schema.define(version: 2021_02_19_183028) do
 
-  create_table "items", force: :cascade do |t|
+  create_table "objects", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.text "description_broken"
     t.text "feel"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "obtainable"
   end
 
   create_table "user_items", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "item_id"
+    t.integer "object_id"
     t.boolean "discovered"
     t.boolean "in_inventory"
     t.boolean "broken"
@@ -34,6 +35,9 @@ ActiveRecord::Schema.define(version: 2021_02_18_211724) do
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "username"
+    t.string "hero"
+    t.string "password_digest"
   end
 
 end
