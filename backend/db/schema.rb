@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_19_183028) do
+ActiveRecord::Schema.define(version: 2021_02_19_194712) do
 
-  create_table "objects", force: :cascade do |t|
+  create_table "entities", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.text "description_broken"
@@ -22,9 +22,24 @@ ActiveRecord::Schema.define(version: 2021_02_19_183028) do
     t.boolean "obtainable"
   end
 
+  create_table "entities_gets", force: :cascade do |t|
+    t.string "entity_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "entity_interactions", force: :cascade do |t|
+    t.string "entity_1"
+    t.string "entity_2"
+    t.text "result_text"
+    t.string "action"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "user_items", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "object_id"
+    t.integer "entity_id"
     t.boolean "discovered"
     t.boolean "in_inventory"
     t.boolean "broken"

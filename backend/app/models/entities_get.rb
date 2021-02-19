@@ -1,0 +1,3 @@
+class EntitiesGet < ApplicationRecord
+
+end

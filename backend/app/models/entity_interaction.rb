@@ -1,0 +1,3 @@
+class EntityInteraction < ApplicationRecord
+
+end
