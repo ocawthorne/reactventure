@@ -1,35 +1,15 @@
 import React from 'react';
 import logo from '../logo.svg';
-
-// import { Link } from 'react-router-dom'
 import '../App.css';
+import Inventory from '../containers/Inventory.js'
 
-class SideBar extends React.Component {
+export default class SideBar extends React.Component {
    render() {
       return (
          <div className="sidebar">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>Inventory</p>
-          <table>
-             <tr>
-                <td>Crowbar</td>
-                <td>Candle</td>
-                <td></td>
-             </tr>
-             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-             </tr>
-             <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-             </tr>
-          </table>
+            <img src={logo} className="App-logo" alt="logo" />
+            <Inventory />
          </div>
       )
    }
 }
-
-export default SideBar
