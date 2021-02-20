@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux';
+import { updateEntryField, resetEntryField } from '../actions/updateEntryField'
 
-export default class EntryField extends Component {
+class EntryField extends Component {
 
    state = {
       input: '',
@@ -10,15 +12,33 @@ export default class EntryField extends Component {
    }
 
    handleChange = (event) => {
-      //! DO LATER
+      const command = event.target.value
+      const currentCommand = Object.assign({}, this.props.command, {
+         command: command.toLowerCase()
+      })
+
+      this.props.updateEntryField(currentCommand)
+      console.log(currentCommand)
+   }
+
+   handleSubmit = (event) => {
+      event.preventDefault()
    }
 
    render() {
       return (
-         <form className="entry-form">
-            <input type="text" className="entry text" />
+         <form onSubmit={this.handleSubmit} className="entry-form">
+            <input type="text" onChange={this.handleChange} className="entry text" />
             <input type="submit" value="Develop the plot..." className="entry submit" />
          </form>
       )
    }
 }
+
+const mapStateToProps = state => {
+   return {
+     command: state.command,
+   }
+ }
+
+export default connect(mapStateToProps, { updateEntryField, resetEntryField })(EntryField);
