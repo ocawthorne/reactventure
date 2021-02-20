@@ -8,7 +8,6 @@ class App extends Component {
 
   componentDidMount() {
     console.log("App mounted")
-    debugger
   }
 
   render() {

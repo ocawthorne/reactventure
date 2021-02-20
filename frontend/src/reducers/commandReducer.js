@@ -8,6 +8,7 @@ const defaultState = {
 const commandReducer = (state=defaultState, action) => {
    switch (action.type) {
       case 'SUBMIT':
+         console.log("Command submitted")
          return {command: action.command}
       default:
          return state
