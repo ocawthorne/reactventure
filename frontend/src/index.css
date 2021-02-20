@@ -1,7 +1,6 @@
 body {
   margin: 0;
-  font-family: "Cascadia Code", monospace,
-    sans-serif;
+  font-family: "Cascadia Code", monospace, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

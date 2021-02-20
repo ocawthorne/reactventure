@@ -18,7 +18,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
@@ -60,4 +60,28 @@
   width: 100px;
   height: 100px;
   font-size: 14px
+}
+
+.entry-form {
+  font-family: "Cascadia Code", monospace, sans-serif;
+  position: fixed;
+  bottom: 0;
+}
+
+.entry-form .entry.text {
+  font-family: "Cascadia Code", monospace, sans-serif;
+  width: 1273px;
+  height: 30px;
+  margin-left: 300px;
+  background-color: #1e2025;
+  border-top: 1px solid lightgrey;
+  color: lightgrey;
+}
+
+.entry-form .entry.submit {
+  font-family: "Cascadia Code", monospace, sans-serif;
+  height: 35px;
+  display: inline;
+  color: lightgrey;
+  background-color: #1e2025;
 }
