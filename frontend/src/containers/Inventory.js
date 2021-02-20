@@ -7,21 +7,23 @@ export default class Inventory extends React.Component {
          <div>
             <p>Inventory</p>
             <table>
-               <tr>
-                  <td>Crowbar</td>
-                  <td>Candle</td>
-                  <td></td>
-               </tr>
-               <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-               </tr>
-               <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-               </tr>
+               <tbody>
+                  <tr>
+                     <td>Crowbar</td>
+                     <td>Candle</td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+                  <tr>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                  </tr>
+               </tbody>
             </table>
          </div>
       )
