@@ -1,5 +1,8 @@
 const defaultState = {
-   command: ''
+   entities: [],
+   command: '',
+   userEntities: [],
+   loading: false
 }
 
 const commandReducer = (state=defaultState, action) => {

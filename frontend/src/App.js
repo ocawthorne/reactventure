@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import './App.css';
 import EntryField from "./components/EntryField";
-
 import SideBar from './components/SideBar.js'
+
 
 class App extends Component {
   render() {

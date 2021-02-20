@@ -85,3 +85,23 @@
   color: lightgrey;
   background-color: #1e2025;
 }
+
+.session-details {
+  font-family: "Cascadia Code", monospace, sans-serif;
+  font-size: 13px;
+  float: left;
+  padding-left: 10px;
+}
+
+.session-details .field {
+  margin-left: 30px;
+  background-color: #1e2025;
+  color: lightgrey;
+}
+
+.login-submit {
+  font-family: "Cascadia Code", monospace, sans-serif;
+  display: inline;
+  color: lightgrey;
+  background-color: #1e2025;
+}

@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from '../logo.svg';
-import '../App.css';
-import Inventory from '../containers/Inventory.js'
+import Inventory from '../containers/Inventory'
+import SignUp from '../components/SignUp'
+import SignIn from '../components/SignIn'
 
 export default class SideBar extends React.Component {
    render() {
@@ -9,6 +10,9 @@ export default class SideBar extends React.Component {
          <div className="sidebar">
             <img src={logo} className="App-logo" alt="logo" />
             <Inventory />
+            <br />
+            <SignIn />
+            <SignUp />
          </div>
       )
    }
