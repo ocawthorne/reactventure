@@ -5,6 +5,12 @@ import SideBar from './components/SideBar.js'
 
 
 class App extends Component {
+
+  componentDidMount() {
+    console.log("App mounted")
+    debugger
+  }
+
   render() {
     return (
       <div className="App">
