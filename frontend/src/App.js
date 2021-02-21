@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import './App.css';
-import EntryField from "./components/EntryField";
+import EntryField from "./containers/EntryField";
 import SideBar from './components/SideBar.js'
 
 

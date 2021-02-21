@@ -5,9 +5,9 @@ export const updateEntryField = (command) => {
    }
 } 
 
-export const resetEntryField = () => {
+export const submitEntryField = (command) => {
    return {
-      type: "RESET_COMMAND",
-      command: ''
+      type: "SUBMITTED_COMMAND",
+      command
    }
 } 

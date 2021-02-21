@@ -1,15 +1,14 @@
 const defaultState = {
-   entities: [],
-   command: '',
-   userEntities: [],
-   loading: false
+   command: ''
 }
 
 const commandReducer = (state=defaultState, action) => {
+   console.log(action.type)
    switch (action.type) {
-      case 'SUBMIT':
-         console.log("Command submitted")
-         return {command: action.command}
+      case 'UPDATED_COMMAND':
+         return {...state, command: action.command}
+      case 'RESET_COMMAND':
+         return defaultState
       default:
          return state
    }
