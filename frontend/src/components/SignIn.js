@@ -16,3 +16,10 @@ export default class SignIn extends React.Component {
       )
    }
 }
+
+const mapStateToProps = state => {
+   return {
+      username: state.username,
+      password: state.password
+   }
+}
