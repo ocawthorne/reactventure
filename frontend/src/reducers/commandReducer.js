@@ -16,7 +16,7 @@ const commandReducer = (state=defaultState, action) => {
          let cmdSplit = action.command.split(" ")
          let item = cmdSplit[cmdSplit.length - 1]
          switch(cmdSplit[0]) {
-            case 'get':
+            case 'get': //! Handling inventory changes
                console.log('This is a get!')
                if (!state.knownObjects.includes(item)) {
                   let notification = `I don't know what '${item}' is.`
@@ -29,10 +29,10 @@ const commandReducer = (state=defaultState, action) => {
                   let notification = `I picked up the ${item}.`
                   return {...state, userObjects: [...state.userObjects, item], userHistory: [...history, `${action.command}\n${notification}`]}
                }
-            case 'use':
+            case 'use': //! Handling the combination of two objects in inventory.
                console.log('This is a use!')
                return {...state, command: state.command}
-            default:
+            default: //! TO ADD ABOVE: Miscellaneous commands such as open.
                console.log('This is default.')
                return state   
          }
