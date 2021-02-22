@@ -1,19 +1,17 @@
 class Api::V1::SessionsController < ApplicationController
    def create
-      @user = User.find_by(username: params[:session][:username])
-      session[:user_id] = @user.id
-      if @user && @user.authenticate(params[:session][:password])
-            render json: @user, include: ['toys.users']
+      user = User.find_by(username: params[:session][:username])
+      session[:user_id] = user.id
+      if user && user.authenticate(params[:session][:password])
+            render json: user
       else 
          render json: {
             error: "Invalid Credentials"
          }
       end 
-
    end 
 
-
-   def get_current_user
+   def current_user
       if logged_in?
          render json: current_user 
       else
@@ -21,12 +19,5 @@ class Api::V1::SessionsController < ApplicationController
             error: "Not logged in"
          }
       end
-   end 
-
-   def destroy
-      session.clear
-      render json: {
-         notice: "Successfully logged out"
-      }
-   end 
+   end
 end
