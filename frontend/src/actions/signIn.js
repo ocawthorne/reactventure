@@ -18,8 +18,32 @@ export const resetLoginField = () => {
    }
 }
 
-export const login = loginData => {
+export const loginSuccess = () => {
+   return {
+      type: "LOGIN_SUCCESS"
+   }
+}
+
+//? Asynchronous Actions
+
+export const login = credentials => {
+   console.log('Starting login.')
+   debugger
    return dispatch => {
-      
+      return fetch("http://localhost:3000/api/v1/login", {
+         credentials: "include",
+         method: "POST",
+         headers: { "Content-Type": "application/json" },
+         body: JSON.stringify(credentials)
+      })
+      .then(resp => resp.json())
+      .then(user => {
+         if (user.error) {
+            alert(user.error);
+         } else {
+            console.log('Login succeeded!')
+            dispatch(loginSuccess())
+         }
+      })
    }
 }
