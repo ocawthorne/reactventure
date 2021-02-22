@@ -1,7 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import '../App.css';
 
-export default class Inventory extends React.Component {
+class Inventory extends React.Component {
    render() {
       return (
          <div>
@@ -9,19 +10,19 @@ export default class Inventory extends React.Component {
             <table>
                <tbody>
                   <tr>
-                     <td>Crowbar</td>
-                     <td>Candle</td>
-                     <td></td>
+                     <td>{this.props.userObjects[0]}</td>
+                     <td>{this.props.userObjects[1]}</td>
+                     <td>{this.props.userObjects[2]}</td>
                   </tr>
                   <tr>
-                     <td></td>
-                     <td></td>
-                     <td></td>
+                     <td>{this.props.userObjects[4]}</td>
+                     <td>{this.props.userObjects[5]}</td>
+                     <td>{this.props.userObjects[6]}</td>
                   </tr>
                   <tr>
-                     <td></td>
-                     <td></td>
-                     <td></td>
+                     <td>{this.props.userObjects[7]}</td>
+                     <td>{this.props.userObjects[8]}</td>
+                     <td>{this.props.userObjects[9]}</td>
                   </tr>
                </tbody>
             </table>
@@ -29,3 +30,11 @@ export default class Inventory extends React.Component {
       )
    }
 }
+
+const mapStateToProps = state => {
+   return {
+      userObjects: state.userObjects,
+   }
+}
+
+export default connect(mapStateToProps)(Inventory)
