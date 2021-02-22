@@ -26,9 +26,9 @@ class SignIn extends React.Component {
             <p>Continue your adventure</p>
             <form onSubmit={this.handleSubmit}>
                <label htmlFor="username">Username</label>
-               <input type="text" className="username field" value={this.props.signInData.username} onChange={this.handleChange} name="username" /><br />
+               <input type="text" className="username field" /* value={this.props.signInData.username} */ onChange={this.handleChange} name="username" /><br />
                <label htmlFor="password">Password</label>
-               <input type="password" className="password field" value={this.props.signInData.password} onChange={this.handleChange} name="password" /><br />
+               <input type="password" className="password field" /* value={this.props.signInData.password} */ onChange={this.handleChange} name="password" /><br />
                <input type="submit" className="login-submit" value="Let's go!" />
             </form>
          </div>
