@@ -111,3 +111,8 @@
   position: absolute;
   overflow: auto;
 }
+
+.history p {
+margin: 0;
+padding: 1px;
+}
