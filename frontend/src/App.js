@@ -1,25 +1,19 @@
 import React, {Component} from "react";
 import './App.css';
 import EntryField from "./containers/EntryField";
-import SideBar from './components/SideBar.js'
+import SideBar from './components/SideBar'
+import History from './containers/History'
 
 
 class App extends Component {
-
-  componentDidMount() {
-    console.log("App mounted")
-  }
-
   render() {
     return (
       <div className="App">
         <SideBar />
-        <header className="App-header">
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-        <EntryField />
-        </header>
+        <div className="App-header">
+          <History />
+          <EntryField />
+        </div>
       </div>
     );
   }

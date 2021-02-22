@@ -11,8 +11,8 @@ export default class SideBar extends React.Component {
             <img src={logo} className="App-logo" alt="logo" />
             <Inventory />
             <br />
-            <SignIn />
-            <SignUp />
+            {/* <SignIn />
+            <SignUp /> */}
          </div>
       )
    }

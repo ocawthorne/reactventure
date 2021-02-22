@@ -17,10 +17,8 @@
   background-color: #1e2025;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: left;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 14px;
   color: white;
 }
 
@@ -70,7 +68,7 @@
 
 .entry-form .entry.text {
   font-family: "Cascadia Code", monospace, sans-serif;
-  width: 1273px;
+  width: 1255px;
   height: 30px;
   margin-left: 300px;
   background-color: #1e2025;
@@ -104,4 +102,12 @@
   display: inline;
   color: lightgrey;
   background-color: #1e2025;
+}
+
+.App-header .history {
+  padding-left: 320px;
+  text-align: left;
+  bottom: 5%;
+  position: absolute;
+  overflow: auto;
 }
