@@ -68,7 +68,7 @@
 
 .entry-form .entry.text {
   font-family: "Cascadia Code", monospace, sans-serif;
-  width: 1255px;
+  width: calc(550px + 100vw - 1024px)!important;
   height: 30px;
   margin-left: 300px;
   background-color: #1e2025;
