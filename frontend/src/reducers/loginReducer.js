@@ -1,12 +1,16 @@
 const defaultState = {
-   username: '',
-   password: ''
+   signInData: {
+      username: '',
+      password: ''
+   }
 }
 
 const loginReducer = (state=defaultState, action) => {
    switch(action.type) {
       case "UPDATED_LOGIN":
-         return {username: state.username, password: state.password}
+         return {signInData: action.signInData}
+      case "RESETTED_LOGIN":
+         return {...defaultState}
       default:
          return state
    }
