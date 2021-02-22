@@ -1,5 +1,5 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import commandReducer from './reducers/commandReducer'
+import { createStore, applyMiddleware, /*combineReducers*/ } from 'redux';
+// import commandReducer from './reducers/commandReducer'
 import loginReducer from './reducers/loginReducer'
 
 import thunk from 'redux-thunk';
