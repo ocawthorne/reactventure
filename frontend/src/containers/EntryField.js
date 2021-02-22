@@ -11,7 +11,7 @@ class EntryField extends Component {
 
    handleSubmit = (event) => {
       event.preventDefault()
-      this.props.submitEntryField(this.props.command)
+      this.props.submitEntryField(this.props.command.trim())
       this.props.updateEntryField('')
    }
 
