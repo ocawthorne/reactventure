@@ -15,14 +15,14 @@ class Inventory extends React.Component {
                      <td>{this.props.userObjects[2]}</td>
                   </tr>
                   <tr>
+                     <td>{this.props.userObjects[3]}</td>
                      <td>{this.props.userObjects[4]}</td>
                      <td>{this.props.userObjects[5]}</td>
-                     <td>{this.props.userObjects[6]}</td>
                   </tr>
                   <tr>
+                     <td>{this.props.userObjects[6]}</td>
                      <td>{this.props.userObjects[7]}</td>
                      <td>{this.props.userObjects[8]}</td>
-                     <td>{this.props.userObjects[9]}</td>
                   </tr>
                </tbody>
             </table>
