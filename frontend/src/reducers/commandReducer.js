@@ -41,8 +41,9 @@ const commandReducer = (state=defaultState, action) => {
                console.log('This is a use!')
                return {...state, command: state.command}
             default: //! TO ADD ABOVE: Miscellaneous commands such as open, look.
-               console.log('This is default.')
-               return state   
+               let notification = `I don't know how to do that.`
+               console.log(notification)
+               return {...state, userHistory: [...history, `> ${action.command}\n${notification}`]}
          }
 
       default:
