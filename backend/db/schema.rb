@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_091041) do
+ActiveRecord::Schema.define(version: 2021_02_23_092932) do
 
   create_table "entities", force: :cascade do |t|
     t.string "name"
@@ -21,12 +21,6 @@ ActiveRecord::Schema.define(version: 2021_02_23_091041) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "obtainable"
     t.boolean "available"
-  end
-
-  create_table "entities_gets", force: :cascade do |t|
-    t.string "entity_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "entity_interactions", force: :cascade do |t|
