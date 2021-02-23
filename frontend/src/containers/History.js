@@ -16,7 +16,7 @@ class History extends Component {
 
 const mapStateToProps = state => {
    return {
-      userHistory: state.userHistory,
+      userHistory: state.commands.userHistory,
    }
 }
 

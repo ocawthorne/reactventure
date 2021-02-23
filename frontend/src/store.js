@@ -1,14 +1,12 @@
-import { createStore, applyMiddleware, /*combineReducers*/ } from 'redux';
-import commandReducer from './reducers/commandReducer'
-// import loginReducer from './reducers/loginReducer'
+import { createStore, applyMiddleware, compose } from 'redux';
 
 import thunk from 'redux-thunk';
+import logger from 'redux-logger'
+import rootReducer from './reducers/rootReducer'
 
-// const reducer = () => combineReducers({
-//     commandReducer,
-//     loginReducer
-// });
-
-const store = createStore(commandReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer, compose(
+   applyMiddleware(thunk, logger),
+   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+)
 
 export default store

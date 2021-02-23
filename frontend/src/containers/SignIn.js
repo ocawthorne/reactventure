@@ -38,7 +38,7 @@ class SignIn extends React.Component {
 
 const mapStateToProps = state => {
    return {
-      signInData: state.signInData
+      signInData: state.logins.signInData
    }
 }
 

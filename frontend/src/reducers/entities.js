@@ -1,9 +1,9 @@
 const defaultState = {
-   allEntities = [],
+   allEntities: [],
    isLoading: false
 }
 
-const entityReducer = (state=defaultState, action) => {
+export const entities = (state=defaultState, action) => {
    switch(action.type) {
       case "LOADING_ENTITIES":
          return {...state, isLoading: true}
@@ -12,4 +12,4 @@ const entityReducer = (state=defaultState, action) => {
       default:
          return state
    }
-} 
+}

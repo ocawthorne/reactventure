@@ -5,7 +5,7 @@ const defaultState = {
    }
 }
 
-const loginReducer = (state=defaultState, action) => {
+export const logins = (state=defaultState, action) => {
    switch(action.type) {
       case "UPDATED_LOGIN":
          return {signInData: action.signInData}
@@ -15,5 +15,3 @@ const loginReducer = (state=defaultState, action) => {
          return state
    }
 }
-
-export default loginReducer

@@ -33,7 +33,7 @@ class Inventory extends React.Component {
 
 const mapStateToProps = state => {
    return {
-      userObjects: state.userObjects,
+      userObjects: state.commands.userObjects,
    }
 }
 
