@@ -16,7 +16,6 @@ class EntryField extends Component {
    }
 
    render() {
-      console.log(this.props)
       return (
          <form onSubmit={this.handleSubmit} className="entry-form">
             <input type="text" onChange={this.handleChange} value={this.props.command} className="entry text" />
