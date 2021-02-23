@@ -8,6 +8,7 @@ export const updateEntryField = (command) => {
 export const submitEntryField = (command) => {
    return {
       type: "SUBMITTED_COMMAND",
-      command
+      command,
+      randomIndex: Math.floor(Math.random()*5)
    }
 } 
