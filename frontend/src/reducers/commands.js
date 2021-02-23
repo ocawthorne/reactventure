@@ -2,7 +2,24 @@ const help = `COMMANDS:\n
 "get/pick up/grab [item]" will add it to your inventory.\n
 "use [item] on [another object]" will apply the first object to the second.\n
 "look at [item]" will allow you to inspect it.\n
+"touch/feel [item]" will let you feel thje object.\n
 "help" will display these choices again.`
+
+const hitDialogues = [
+   `Violence is never the answer.`,
+   `That hurt, and it did nothing. Thanks.`,
+   `Didn't your mother teach you anything?`,
+   `Ow.`,
+   `Great, now I'm going to get a bruise.`
+]
+
+const prayDialogues = [
+   `God says: "You must lead the people to the Promised Land!"\nYou'll do it next weekend.`,
+   `God finds it surprising that you need His help in such a simple game.\nHis omniscience gets the better of Him sometimes.`,
+   `I prayed and nothing happened. Maybe next time.`,
+   `I knelt down to pray and felt a slight crick in my back. I should get that checked out.`,
+   `God suggests that you look around the room a bit more.\nI think He's busy.`
+]
 
 const defaultState = {
    //! Inventory-related state
@@ -64,10 +81,29 @@ export const commands = (state=defaultState, action) => {
                } else {
                   return aHNC(state, state.allEntities.filter(obj => obj.name === item)[0].description)
                }
+            case 'touch':
+            case 'feel':
+               if (!state.knownObjects.includes(item)) {
+                  return aHNC(state, `I don't know what '${item}' is.`)
+               } else {
+                  return aHNC(state, state.allEntities.filter(obj => obj.name === item)[0].feel)
+               }
             case 'use': //! Handling the combination of two knownObjects.
                return {...state, command: state.command}
-            case 'help': //! TO ADD ABOVE: Miscellaneous commands such as open, look.
-               return aHNC(state, `God says: "You must lead the people to the Promised Land!"\nYou'll do it next weekend.`)
+            case 'help':
+               return aHNC(state, help)
+
+            
+            case 'open':
+               if (cmdSplit.length > 2) {
+                  return aHNC(state, `Remember: the format for most commands is "use [first item] on [second item]".`)
+               }
+            //? For fun
+            case 'pray': //! TO ADD ABOVE: Miscellaneous commands such as open, look.
+               return aHNC(state, prayDialogues[action.randomIndex])
+            case 'punch':
+            case 'hit':
+               return aHNC(state, hitDialogues[action.randomIndex])
             default:
                return {...state, userHistory: [...history, `> ${action.command}\nI don't know how to do that.\n `]}
          }
