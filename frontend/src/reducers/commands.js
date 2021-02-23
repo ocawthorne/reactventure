@@ -47,36 +47,27 @@ export const commands = (state=defaultState, action) => {
             case 'pick':
             case 'grab':
                if (!state.knownObjects.includes(item)) {
-                  let notification = `I don't know what '${item}' is.`
-                  return aHNC(state, notification)
+                  return aHNC(state, `I don't know what '${item}' is.`)
                } else if (state.userObjects.includes(item)) {
-                  let notification = "I already have that!"
-                  return aHNC(state, notification)
+                  return aHNC(state, `I already have that!`)
                } else {
                   if (state.allEntities.filter(obj => obj.name === item)[0].obtainable) {
                      let notification = `I picked up the ${item}.`
                      return {...state, userObjects: [...state.userObjects, item], userHistory: [...history, `> ${action.command}\n${notification}\n `]}
                   } else {
-                     let notification = `I can't pick that up!`
-                     return aHNC(state, notification)
+                     return aHNC(state, `I can't pick that up!`)
                   }
                }
             case 'look':
                if (!state.knownObjects.includes(item)) {
-                  let notification = `I don't know what '${item}' is.`
-                  return aHNC(state, notification)
+                  return aHNC(state, `I don't know what '${item}' is.`)
                } else {
-                  let notification = state.allEntities.filter(obj => obj.name === item)[0].description
-                  return aHNC(state, notification)
+                  return aHNC(state, state.allEntities.filter(obj => obj.name === item)[0].description)
                }
-            case 'use': //! Handling the combination of two objects in inventory.
+            case 'use': //! Handling the combination of two knownObjects.
                return {...state, command: state.command}
-            
-            
-            
             case 'help': //! TO ADD ABOVE: Miscellaneous commands such as open, look.
-               let notification = `God says: "You must lead the people to the Promised Land!"\nYou'll do it next weekend.`
-               return aHNC(state, notification)
+               return aHNC(state, `God says: "You must lead the people to the Promised Land!"\nYou'll do it next weekend.`)
             default:
                return {...state, userHistory: [...history, `> ${action.command}\nI don't know how to do that.\n `]}
          }
