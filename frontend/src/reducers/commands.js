@@ -35,12 +35,10 @@ export const commands = (state=defaultState, action) => {
             case 'get': //! Handling inventory changes
             case 'pick':
             case 'grab':
-               console.log('This is a get!')
                if (!state.knownObjects.includes(item)) {
                   let notification = `I don't know what '${item}' is.`
                   return {...state, userHistory: [...history, `> ${action.command}\n${notification}\n `]}
                } else if (state.userObjects.includes(item)) {
-                  console.log(`${item} already in inventory.`)
                   let notification = "I already have that!"
                   return {...state, userHistory: [...history, `> ${action.command}\n${notification}\n `]}
                } else {
@@ -48,7 +46,6 @@ export const commands = (state=defaultState, action) => {
                   return {...state, userObjects: [...state.userObjects, item], userHistory: [...history, `> ${action.command}\n${notification}\n `]}
                }
             case 'use': //! Handling the combination of two objects in inventory.
-               console.log('This is a use!')
                return {...state, command: state.command}
             case 'help':
                return {...state, userHistory: [...history, `> ${action.command}\n${help}\n `]}

@@ -4,9 +4,13 @@ import { updateLoginField, submitLoginField, resetLoginField, login } from '../a
 
 class SignIn extends React.Component {
 
+   state = {
+      signInData: {}
+   }
+
    handleChange = (event) => {
       const { name, value } = event.target
-      const currentLoginData = Object.assign({}, this.props.signInData, {
+      const currentLoginData = Object.assign({}, this.state.signInData, {
          [name]: value
       })
 
@@ -16,7 +20,7 @@ class SignIn extends React.Component {
    handleSubmit = (event) => {
       event.preventDefault()
       console.log('Sign in button pressed')
-      login(this.props.signInData)
+      login(this.state.signInData)
       this.props.resetLoginField()
    }
 
@@ -26,9 +30,9 @@ class SignIn extends React.Component {
             <p>Continue your adventure</p>
             <form onSubmit={this.handleSubmit}>
                <label htmlFor="username">Username</label>
-               <input type="text" className="username field" /* value={this.props.signInData.username} */ onChange={this.handleChange} name="username" /><br />
+               <input type="text" className="username field" value={this.state.signInData.username} onChange={this.handleChange} name="username" /><br />
                <label htmlFor="password">Password</label>
-               <input type="password" className="password field" /* value={this.props.signInData.password} */ onChange={this.handleChange} name="password" /><br />
+               <input type="password" className="password field" value={this.state.signInData.password} onChange={this.handleChange} name="password" /><br />
                <input type="submit" className="login-submit" value="Let's go!" />
             </form>
          </div>
