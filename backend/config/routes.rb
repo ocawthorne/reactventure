@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :entities
       resources :users
       resources :inventories
+      resources :entity_interactions
     end
   end
 end
