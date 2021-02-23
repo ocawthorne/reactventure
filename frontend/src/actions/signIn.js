@@ -27,8 +27,6 @@ export const loginSuccess = () => {
 //? Asynchronous Actions
 
 export const login = credentials => {
-   console.log('Starting login.')
-   debugger
    return dispatch => {
       return fetch("http://localhost:3000/api/v1/login", {
          credentials: "include",
@@ -41,7 +39,6 @@ export const login = credentials => {
          if (user.error) {
             alert(user.error);
          } else {
-            console.log('Login succeeded!')
             dispatch(loginSuccess())
          }
       })

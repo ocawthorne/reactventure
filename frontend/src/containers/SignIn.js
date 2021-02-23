@@ -19,7 +19,6 @@ class SignIn extends React.Component {
 
    handleSubmit = (event) => {
       event.preventDefault()
-      console.log('Sign in button pressed')
       login(this.state.signInData)
       this.props.resetLoginField()
    }
