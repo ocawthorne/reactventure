@@ -14,6 +14,8 @@ EntityInteraction.delete_all
 User.create(username: "user", hero: "John", password: "password")
 
 #! DO NOT MODIFY BELOW HERE - This data is used for the story.
+#! The state in which the entities are initialised are in default state.
+#! In other words, the user will modify the boolean values as they progress through the game.
 #? Objects
 
 Entity.create(
@@ -28,6 +30,7 @@ Entity.create(
    name: "door",
    description: "It's locked.",
    description_broken: "",
+   feel: "I thought the door was wooden in this light, but it's actually just very rusty.",
    obtainable: false
 )
 
@@ -94,41 +97,41 @@ end
 EntityInteraction.create(
    entity_1: "crowbar",
    entity_2: "door",
-   result_text: "I spent a few minutes wrangling with the door, but nothing happened."
+   result_text: "I spent a few minutes wrangling with the door, but nothing happened.",
    action: nil
 )
 
 EntityInteraction.create(
    entity_1: "candle",
    entity_2: "paper",
-   result_text: "I don't think I should burn that. It could come in useful if I can find out what it means."
+   result_text: "I don't think I should burn that. It could come in useful if I can find out what it means.",
    action: nil
 )
 
 EntityInteraction.create(
    entity_1: "candle",
    entity_2: "desk",
-   result_text: "Are you crazy? I'd suffocate in here!"
+   result_text: "Are you crazy? I'd suffocate in here!",
    action: nil
 )
 
 EntityInteraction.create(
    entity_1: "chest",
    entity_2: "crowbar",
-   result_text: "SNAP.\nThe crowbar split clean in half, but weakened the chest enough for it to open."
+   result_text: "SNAP.\nThe crowbar split clean in half, but weakened the chest enough for it to open.",
    action: "OPEN chest, DELETE crowbar"
 )
 
 EntityInteraction.create(
    entity_1: "door",
    entity_2: "key",
-   result_text: "The key made an unconvincing snap, but the door swung open!\nThe key is stuck in the door."
+   result_text: "The key made an unconvincing snap, but the door swung open!\nThe key is stuck in the door.",
    action: "OPEN door, DELETE key"
 )
 
 EntityInteraction.create(
    entity_1: "candle",
    entity_2: "ice cube",
-   result_text: "After a couple of minutes, the ice melts away. I got the key!"
+   result_text: "After a couple of minutes, the ice melts away. I got the key!",
    action: "GET key, DELETE ice cube"
 )
