@@ -5,9 +5,14 @@ const help = `COMMANDS:\n
 "help" will display these choices again.`
 
 const defaultState = {
+   //! Inventory-related state
    currentUser: '',    //? When a login is prompted, this value will be the user ID.
+   allEntities: [],    //TODO Switch this so that the known objects are fetched.
+   entitiesLoading: false,
    userObjects: [],    //? Starting empty at the beginning of the game, this is populated through 'get x' commands.
-   knownObjects: ['crowbar','candle','desk','chest','door'], //TODO Switch this so that the known objects are fetched.
+   knownObjects: [],   //? Gradually populated based on event.
+
+   //! History-related state
    userHistory: [
       `I've woken up in a strange, damp little room with only a door in front of me.\n
       There is a desk on the left of me with a lit candle on top of it and a piece of paper next to the candle.\n
@@ -15,6 +20,8 @@ const defaultState = {
       A crowbar lies in front of the door.\n 
       ${help}\n `
    ],    //? This array stores every piece of narrative, feedback, and command that the user has prompted. This is rendered to the History container.
+
+   //! Command-related state
    command: '',        //? This is modified when the user types in an input. When executed, this command is split into its respective words for further processing.
    uniqueEvents: {
       openedChest: false, //? This event is triggered by "use crowbar on chest" or "open chest with crowbar". Also destroys crowbar.
@@ -24,6 +31,7 @@ const defaultState = {
 
 
 export const commands = (state=defaultState, action) => {
+   console.log('Landed in command reducer.')
    switch (action.type) {
       case 'UPDATED_COMMAND':
          return {...state, command: action.command}
@@ -56,6 +64,13 @@ export const commands = (state=defaultState, action) => {
                return {...state, userHistory: [...history, `> ${action.command}\nI don't know how to do that.\n `]}
          }
 
+      //? Loading entities
+      case "LOADING_ENTITIES":
+         console.log('Loading entities')
+         return {...state, isLoading: true}
+      case "FETCH_ENTITIES_SUCCESS":
+         console.log('Entity fetch succeeded')
+         return {...state, allEntities: action.allEntities, entitiesLoading: false}
       default:
          return state
    }
