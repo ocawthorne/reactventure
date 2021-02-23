@@ -6,25 +6,13 @@ export const fetchEntitiesSuccess = (allEntities) => {
    }
 } 
 
-// export const getAllEntities = () => {
-//    console.log('Fetching entities...')
-//    // return dispatch => {
-//    //    return (
-//          fetch("http://localhost:3000/api/v1/entities", {
-//             method: "GET",
-//             headers: {
-//                "Content-Type": "application/json",
-//                "Access-Control-Allow-Origin": "*"
-//             }
-//          })
-//          .then(resp => resp.json())
-//          .then(allEntities => {
-//             console.log('About to dispatch fetchEntitiesSuccess')
-//             // return allEntities
-//          })
-//    //    )
-//    // }
-// }
+export const fetchEntityInteractionsSuccess = (allEntityInteractions) => {
+   console.log('Sending action to fetch entities.')
+   return {
+      type: "FETCH_ENTITY_INTERACTIONS_SUCCESS",
+      allEntityInteractions
+   }
+} 
 
 export const getAllEntities = () => {
    return dispatch => {
@@ -41,6 +29,29 @@ export const getAllEntities = () => {
          .then(r => r.json())
          .then(entities => {
             dispatch(fetchEntitiesSuccess(entities));
+            })
+         .catch(error => {
+            console.log("Error: ", error);
+            })
+      )
+   }
+}
+
+export const getAllEntityInteractions = () => {
+   return dispatch => {
+      dispatch({type: 'LOADING_ENTITIES'})
+      return (
+         fetch("http://localhost:3000/api/v1/entity_interactions", {
+         credentials: "include",
+         method: "GET",
+         headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": true
+         }
+         })
+         .then(r => r.json())
+         .then(ei => {
+            dispatch(fetchEntityInteractionsSuccess(ei));
             })
          .catch(error => {
             console.log("Error: ", error);

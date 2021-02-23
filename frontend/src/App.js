@@ -6,7 +6,7 @@ import EntryField from "./containers/EntryField";
 import SideBar from './components/SideBar'
 import History from './containers/History'
 
-import { getAllEntities } from './actions/entities'
+import { getAllEntities, getAllEntityInteractions } from './actions/entities'
 
 
 class App extends Component {
@@ -14,6 +14,7 @@ class App extends Component {
   componentDidMount() {
     console.log('App mounted, fetching all entities.')
     this.props.getAllEntities()
+    this.props.getAllEntityInteractions()
  }
 
   render() {
@@ -31,8 +32,9 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-     allEntities: state.commands.allEntities
+     allEntities: state.commands.allEntities,
+     allEntityInteractions: state.commands.allEntityInteractions
   }
 }
 
-export default connect(mapStateToProps, { getAllEntities })(App)
+export default connect(mapStateToProps, { getAllEntities, getAllEntityInteractions })(App)

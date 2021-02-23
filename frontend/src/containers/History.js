@@ -1,7 +1,14 @@
 import React, {Component} from "react"
 import { connect } from 'react-redux';
+import { commitHistoryToUser } from '../actions/users'
 
 class History extends Component {
+
+   componentDidUpdate() {
+      console.log('History updated.')
+      commitHistoryToUser(this.props.userHistory)
+      debugger
+   }
 
    render() {
       return (
@@ -20,4 +27,4 @@ const mapStateToProps = state => {
    }
 }
 
-export default connect(mapStateToProps)(History)
+export default connect(mapStateToProps, { commitHistoryToUser })(History)
