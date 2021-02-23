@@ -7,10 +7,10 @@ const help = `COMMANDS:\n
 const defaultState = {
    //! Inventory-related state
    currentUser: '',    //? When a login is prompted, this value will be the user ID.
-   allEntities: [],    //TODO Switch this so that the known objects are fetched.
+   allEntities: [],
    entitiesLoading: false,
    userObjects: [],    //? Starting empty at the beginning of the game, this is populated through 'get x' commands.
-   knownObjects: [],   //? Gradually populated based on event.
+   knownObjects: ['crowbar','door','desk','drawer','paper','candle','chest'],   //? Gradually populated based on event.
 
    //! History-related state
    userHistory: [
@@ -29,6 +29,9 @@ const defaultState = {
    }
 }                      //! Specifically: "get x", "use x on y", "open x", and so on.
 
+function aHNC(state, notification) { // Add History No Change (aHNC)
+   return {...state, userHistory: [...state.userHistory, `> ${state.command}\n${notification}\n `]}
+}
 
 export const commands = (state=defaultState, action) => {
    console.log('Landed in command reducer.')
@@ -36,8 +39,8 @@ export const commands = (state=defaultState, action) => {
       case 'UPDATED_COMMAND':
          return {...state, command: action.command}
       case 'SUBMITTED_COMMAND':
-         let history = state.userHistory
          let cmdSplit = action.command.split(" ")
+         let history = state.userHistory
          let item = cmdSplit[cmdSplit.length - 1]
          switch(cmdSplit[0]) {
             case 'get': //! Handling inventory changes
@@ -45,24 +48,40 @@ export const commands = (state=defaultState, action) => {
             case 'grab':
                if (!state.knownObjects.includes(item)) {
                   let notification = `I don't know what '${item}' is.`
-                  return {...state, userHistory: [...history, `> ${action.command}\n${notification}\n `]}
+                  return aHNC(state, notification)
                } else if (state.userObjects.includes(item)) {
                   let notification = "I already have that!"
-                  return {...state, userHistory: [...history, `> ${action.command}\n${notification}\n `]}
+                  return aHNC(state, notification)
                } else {
-                  let notification = `I picked up the ${item}.`
-                  return {...state, userObjects: [...state.userObjects, item], userHistory: [...history, `> ${action.command}\n${notification}\n `]}
+                  if (state.allEntities.filter(obj => obj.name === item)[0].obtainable) {
+                     let notification = `I picked up the ${item}.`
+                     return {...state, userObjects: [...state.userObjects, item], userHistory: [...history, `> ${action.command}\n${notification}\n `]}
+                  } else {
+                     let notification = `I can't pick that up!`
+                     return aHNC(state, notification)
+                  }
+               }
+            case 'look':
+               if (!state.knownObjects.includes(item)) {
+                  let notification = `I don't know what '${item}' is.`
+                  return aHNC(state, notification)
+               } else {
+                  let notification = state.allEntities.filter(obj => obj.name === item)[0].description
+                  return aHNC(state, notification)
                }
             case 'use': //! Handling the combination of two objects in inventory.
                return {...state, command: state.command}
-            case 'help':
-               return {...state, userHistory: [...history, `> ${action.command}\n${help}\n `]}
-            case 'pray':
+            
+            
+            
+            case 'help': //! TO ADD ABOVE: Miscellaneous commands such as open, look.
                let notification = `God says: "You must lead the people to the Promised Land!"\nYou'll do it next weekend.`
-               return {...state, userHistory: [...history, `> ${action.command}\n${notification}\n `]}
-            default: //! TO ADD ABOVE: Miscellaneous commands such as open, look.
+               return aHNC(state, notification)
+            default:
                return {...state, userHistory: [...history, `> ${action.command}\nI don't know how to do that.\n `]}
          }
+
+
 
       //? Loading entities
       case "LOADING_ENTITIES":
