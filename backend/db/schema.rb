@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_123601) do
+ActiveRecord::Schema.define(version: 2021_02_24_223354) do
 
   create_table "entities", force: :cascade do |t|
     t.string "name"
@@ -34,20 +34,14 @@ ActiveRecord::Schema.define(version: 2021_02_23_123601) do
     t.boolean "available"
   end
 
-  create_table "inventories", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "entity_id"
-    t.boolean "broken"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
     t.string "hero"
     t.string "password_digest"
+    t.text "inventory"
+    t.text "history", limit: 2097151
   end
 
 end
