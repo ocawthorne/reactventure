@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { submitEntryField, updateEntryField } from '../actions/entryField'
+// import { submitLoginField } from '../actions/signIn';
 
 class EntryField extends Component {
 
