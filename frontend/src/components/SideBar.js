@@ -1,4 +1,6 @@
 import React from 'react';
+import { Switch, Route } from 'react-router-dom'
+
 import logo from '../logo.svg';
 import Inventory from '../containers/Inventory'
 import SignUp from '../components/SignUp'
@@ -10,8 +12,10 @@ export default function SideBar() {
          <img src={logo} className="App-logo" alt="logo" />
          <Inventory />
          <br />
-         <SignIn />
-         <SignUp />
+         <Switch>
+            <Route exact path="/" component={SignIn} />
+            <Route exact path="/signup" component={SignUp} />
+         </Switch>
       </div>
    )
 }
