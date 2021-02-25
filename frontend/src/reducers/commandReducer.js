@@ -55,7 +55,7 @@ function aHNC(state, notification) { // Add History No Change (aHNC)
    return {...state, userHistory: [...state.userHistory, `> ${state.command}\n${notification}\n `]}
 }
 
-export const commands = (state=defaultState, action) => {
+export const commandReducer = (state=defaultState, action) => {
    console.log('Landed in command reducer.')
    switch (action.type) {
       case 'UPDATED_COMMAND':

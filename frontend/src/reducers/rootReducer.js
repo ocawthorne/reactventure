@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import { commands } from './commands'
-import { logins } from './logins'
+import { commandReducer } from './commandReducer'
+import { authReducer } from './authReducer'
 
 export default combineReducers({
-   commands,
-   logins
+   commands: commandReducer,
+   auth: authReducer
 })

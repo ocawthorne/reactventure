@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateLoginField, submitLoginField, resetLoginField, login } from '../actions/signIn'
+import { login } from '../actions/auth'
 
 class SignIn extends React.Component {
 
@@ -45,4 +45,4 @@ const mapStateToProps = state => {
    }
 }
 
-export default connect(mapStateToProps, { updateLoginField, submitLoginField, resetLoginField, login })(SignIn);
+export default connect(mapStateToProps, { login })(SignIn);
