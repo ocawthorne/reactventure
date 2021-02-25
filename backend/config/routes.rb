@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   post "api/v1/login", to: "api/v1/sessions#create"
   get "api/v1/current_user", to: "api/v1/sessions#current_user"
-  post "/api/v1/signup", to: "api/v1/users#create"
+  post "/api/v1/users", to: "api/v1/users#create"
 
   namespace :api do
     namespace :v1 do
