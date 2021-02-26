@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::API
-   protect_from_forgery with: :exception
-   skip_before_action :verify_authenticity_token
-   helper_method :logged_in, :current_user
+   # protect_from_forgery with: :exception
+   # skip_before_action :verify_authenticity_token
+   # helper_method :logged_in, :current_user
 
    private
 
