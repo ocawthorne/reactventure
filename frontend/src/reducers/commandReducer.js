@@ -33,13 +33,7 @@ const defaultState = {
    brokenObjects: [],
 
    //! History-related state
-   userHistory: [
-      `I've woken up in a strange, cold, dark little room with only a door in front of me.\n
-      There is a desk on the left of me with a lit candle on top of it and a piece of paper next to the candle.\n
-      An old chest sits to the right of me.\n
-      A crowbar lies in front of the door.\n 
-      ${help}\n `
-   ],    //? This array stores every piece of narrative, feedback, and command that the user has prompted. This is rendered to the History container.
+   userHistory: [],    //? This array stores every piece of narrative, feedback, and command that the user has prompted. This is rendered to the History container.
 
    //! Command-related state
    command: '',        //? This is modified when the user types in an input. When executed, this command is split into its respective words for further processing.
@@ -55,7 +49,6 @@ function aHNC(state, notification) { // Add History No Change (aHNC)
 }
 
 export const commandReducer = (state=defaultState, action) => {
-   console.log('Landed in command reducer.')
    switch (action.type) {
       case 'UPDATED_COMMAND':
          return {...state, command: action.command}
@@ -192,14 +185,19 @@ export const commandReducer = (state=defaultState, action) => {
 
       //? Loading entities and interactions
       case "LOADING_ENTITIES":
-         console.log('Loading entities')
          return {...state, isLoading: true}
       case "FETCH_ENTITIES_SUCCESS":
-         console.log('Entity fetch succeeded')
          return {...state, allEntities: action.allEntities, isLoading: false}
       case "FETCH_ENTITY_INTERACTIONS_SUCCESS":
-         console.log('Entity interaction fetch succeeded.')
          return {...state, allEntityInteractions: action.allEntityInteractions, isLoading: false}
+      case "USER_HISTORY_FETCH_SUCCESS":
+         return {
+            ...state,
+            userHistory: action.payload.userHistory,
+            userObjects: action.payload.userObjects,
+            knownObjects: action.payload.knownObjects,
+            brokenObjects: action.payload.brokenObjects
+         }
       default:
          return state
    }
