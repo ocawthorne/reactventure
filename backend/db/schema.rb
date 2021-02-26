@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_24_223354) do
+ActiveRecord::Schema.define(version: 2021_02_26_175938) do
 
   create_table "entities", force: :cascade do |t|
     t.string "name"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2021_02_24_223354) do
     t.string "password_digest"
     t.text "inventory"
     t.text "history", limit: 2097151
+    t.text "known_objects"
+    t.text "broken_objects"
   end
 
 end
