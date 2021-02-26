@@ -9,13 +9,16 @@ export const signup = (userData) => {
          body: JSON.stringify({user: userData})
       })
       .then(res => res.json())
-      .then(data => dispatch({
+      .then(data => {
+         dispatch({
          type: "AUTH_SUCCESS",
          payload: {
             loggedIn: true,
             currentUser: data.user
-         }
-      }))
+            }
+         })
+         save(data.user, [], [], ['crowbar','door','desk','drawer','paper','candle','chest'], []) // Default values at beginning of game
+      })
    }
 }
 
@@ -42,6 +45,7 @@ export const login = (userData, history) => {
                }
             })
             history.push('/')
+            retrieve(data.user, dispatch)
          }
       })
    }
@@ -72,4 +76,64 @@ export const logout = () => {
       .then(res => res.json())
       .then(data => dispatch({type: "LOGOUT_SUCCESS"}))
    }
+}
+
+export const save = (user, hist=[], inventory=[], knownObjects=['crowbar','door','desk','drawer','paper','candle','chest'], brokenObjects=[]) => {
+   console.log('Save action initiated.')
+   return dispatch => {
+      fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
+         method: 'POST',
+         headers: {
+            "Content-Type": "application/json",
+         },
+         credentials: 'include',
+         body: JSON.stringify({
+            history: hist,
+            inventory: inventory,
+            known_objects: knownObjects,
+            broken_objects: brokenObjects
+         })
+      })
+      .then(res => res.json())
+      .then(data => {
+         dispatch({
+            type: "USER_HISTORY_FETCH_SUCCESS",
+            payload: {
+               userHistory: hist,
+               userObjects: inventory,
+               knownObjects,
+               brokenObjects
+            }
+         })
+      })
+   }
+}
+
+export const retrieve = (user, dispatch) => {
+   console.log('Retrieve initiated.')
+   console.log(user)
+   // return dispatch => {
+      fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
+         credentials: "include",
+         method: "GET",
+         headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+         }
+      })
+      .then(r => r.json())
+      .then(data => dispatch({
+            type: "USER_HISTORY_FETCH_SUCCESS",
+            payload: {
+               userHistory: data.history,
+               userObjects: data.inventory,
+               knownObjects: data.known_objects,
+               brokenObjects: data.broken_objects
+               }
+            })
+      )
+      .catch(error => {
+         console.log("Error: ", error);
+      })
+   // }
 }
