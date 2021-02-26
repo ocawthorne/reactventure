@@ -4,4 +4,6 @@ class User < ApplicationRecord
 
    serialize :inventory, Array
    serialize :history, Array
+   serialize :known_objects, Array
+   serialize :broken_objects, Array
 end
