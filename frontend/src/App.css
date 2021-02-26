@@ -84,6 +84,14 @@
   background-color: #1e2025;
 }
 
+button.entry.submit {
+  font-family: "Cascadia Code", monospace, sans-serif;
+  height: 35px;
+  display: inline;
+  color: lightgrey;
+  background-color: #1e2025;
+}
+
 .session-details {
   font-family: "Cascadia Code", monospace, sans-serif;
   font-size: 13px;
