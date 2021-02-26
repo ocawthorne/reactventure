@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { login } from '../actions/auth'
+import { login, retrieve } from '../actions/auth'
 
 class SignIn extends React.Component {
 
@@ -36,4 +36,10 @@ class SignIn extends React.Component {
    }
 }
 
-export default connect(null, { login })(SignIn);
+const mapStateToProps = state => {
+   return {
+      user: state.auth.currentUser
+   }
+}
+
+export default connect(mapStateToProps, { login, retrieve })(SignIn);
