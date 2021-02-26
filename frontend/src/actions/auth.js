@@ -5,33 +5,43 @@ export const signup = (userData) => {
          headers: {
             'Content-Type': 'application/json'
          },
+         credentials: "include",
          body: JSON.stringify({user: userData})
       })
       .then(res => res.json())
       .then(data => dispatch({
-         type: "SIGNUP_SUCCESS",
+         type: "AUTH_SUCCESS",
          payload: {
-            loggedIn: data.loggedIn,
+            loggedIn: true,
             currentUser: data.user
          }
       }))
    }
 }
 
-export const login = credentials => {
+export const login = (userData, history) => {
    return dispatch => {
-      return fetch("http://localhost:3000/api/v1/login", {
-         credentials: "include",
+      fetch("http://localhost:3000/api/v1/sessions", {
          method: "POST",
-         headers: { "Content-Type": "application/json" },
-         body: JSON.stringify(credentials)
+         headers: {
+            "Content-Type": "application/json",
+         },
+         credentials: 'include',
+         body: JSON.stringify(userData)
       })
       .then(resp => resp.json())
-      .then(user => {
-         if (user.error) {
-            alert(user.error);
+      .then(data => {
+         if (data.error) {
+            alert(data.error);
          } else {
-            return null
+            dispatch({
+               type: "AUTH_SUCCESS",
+               payload: {
+                  loggedIn: true,
+                  currentUser: data.user
+               }
+            })
+            history.push('/')
          }
       })
    }
