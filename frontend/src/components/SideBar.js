@@ -7,7 +7,6 @@ import Inventory from '../containers/Inventory'
 import SignUp from '../components/SignUp'
 import SignIn from '../containers/SignIn'
 import Welcome from '../components/Welcome'
-import { logout } from '../actions/auth'
 
 class SideBar extends React.Component {
    render() {
@@ -16,14 +15,18 @@ class SideBar extends React.Component {
             <img src={logo} className="App-logo" alt="logo" />
             <Inventory />
             <br />
-            {this.props.user.username ? "" : <Link to="/signup" className="link">New Adventure</Link>}
+            {!this.props.user.username && <Link to="/signup" className="link">New Adventure</Link>}
             <br /><br />
-            {this.props.user.username ? <Link to="" onClick={() => this.props.logout()}>Log out</Link> : <Link to="/signin" className="link">Continue Adventure</Link>}
+            {!this.props.user.username && <Link to="/signin" className="link">Continue Adventure</Link>}
+            <br /><br />
             <Switch>
                <Route exact path="/" component={Welcome} />
                <Route exact path="/signin" component={SignIn} />
                <Route exact path="/signup" component={SignUp} />
             </Switch>
+            {/* <Welcome /> */}
+            {/* {this.props.user.username ? <Link to="" onClick={() => this.props.logout()}>Log out</Link> : <Link to="/signin" className="link">Continue Adventure</Link>} */}
+
          </div>
       )
    }
@@ -35,4 +38,4 @@ const mapStateToProps = (state) => {
    }
 }
 
-export default connect(mapStateToProps, { logout })(SideBar)
+export default connect(mapStateToProps)(SideBar)
