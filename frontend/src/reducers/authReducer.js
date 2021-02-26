@@ -1,6 +1,6 @@
 export const authReducer = (state={loggedIn: false, currentUser: {}}, action) => {
    switch(action.type) {
-      case "SIGNUP_SUCCESS":
+      case "AUTH_SUCCESS":
          return {
             ...state,
             loggedIn: action.payload.loggedIn,
