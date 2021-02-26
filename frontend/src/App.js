@@ -12,7 +12,6 @@ import { getAllEntities, getAllEntityInteractions } from './actions/entities'
 class App extends Component {
 
   componentDidMount() {
-    console.log('App mounted, fetching all entities.')
     this.props.getAllEntities()
     this.props.getAllEntityInteractions()
  }

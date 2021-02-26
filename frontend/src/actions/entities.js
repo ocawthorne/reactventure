@@ -1,5 +1,4 @@
 export const fetchEntitiesSuccess = (allEntities) => {
-   console.log('Sending action to fetch entities.')
    return {
       type: "FETCH_ENTITIES_SUCCESS",
       allEntities
@@ -7,7 +6,6 @@ export const fetchEntitiesSuccess = (allEntities) => {
 } 
 
 export const fetchEntityInteractionsSuccess = (allEntityInteractions) => {
-   console.log('Sending action to fetch entities.')
    return {
       type: "FETCH_ENTITY_INTERACTIONS_SUCCESS",
       allEntityInteractions
@@ -22,14 +20,14 @@ export const getAllEntities = () => {
          credentials: "include",
          method: "GET",
          headers: {
-            "Content-Type": "application/json",
+            "Accept": "application/json",
             "Access-Control-Allow-Origin": true
          }
          })
          .then(r => r.json())
          .then(entities => {
             dispatch(fetchEntitiesSuccess(entities));
-            })
+         })
          .catch(error => {
             console.log("Error: ", error);
             })
