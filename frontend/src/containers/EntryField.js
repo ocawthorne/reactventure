@@ -28,7 +28,7 @@ class EntryField extends Component {
 
 const mapStateToProps = state => {
    return {
-      currentUser: state.commands.currentUser,
+      currentUser: state.auth.currentUser,
       userObjects: state.commands.userObjects,
       knownObjects: state.commands.knownObjects,
       userHistory: state.commands.userHistory,
