@@ -1,20 +1,24 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom'
+import { connect } from 'react-redux';
 
 import logo from '../logo.svg';
 import Inventory from '../containers/Inventory'
 import SignUp from '../components/SignUp'
 import SignIn from '../containers/SignIn'
 
-export default function SideBar() {
+const SideBar = ({user}) => {
+
+   console.log(user)
+
    return (
       <div className="sidebar">
          <img src={logo} className="App-logo" alt="logo" />
          <Inventory />
          <br />
-         <Link to="/" className="link">Adventure</Link>
-         <Link to="/signin" className="link">Sign In</Link>
-         <Link to="/signup" className="link">Sign Up</Link>
+         {user.username ? <p>Welcome, {user.username}!</p> : <Link to="/signup" className="link">New Adventure</Link>}
+         <br /><br />
+         {user.username ? <Link to="/signout">Log out</Link> : <Link to="/signin" className="link">Continue Adventure</Link>}
          <Switch>
             <Route exact path="/" />
             <Route exact path="/signin" component={SignIn} />
@@ -23,3 +27,11 @@ export default function SideBar() {
       </div>
    )
 }
+
+const mapStateToProps = (state) => {
+   return {
+      user: state.auth.currentUser
+   }
+}
+
+export default connect(mapStateToProps)(SideBar)
