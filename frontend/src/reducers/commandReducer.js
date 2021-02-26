@@ -23,8 +23,7 @@ const prayDialogues = [
 
 const defaultState = {
    //! Inventory-related state
-   currentUser: '',    //? When a login is prompted, this value will be the user ID.
-
+   // currentUser: '',    //? When a login is prompted, this value will be the user ID.
    allEntities: [],
    allEntityInteractions: [],
    isLoading: false,
