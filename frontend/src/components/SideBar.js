@@ -8,9 +8,6 @@ import SignUp from '../components/SignUp'
 import SignIn from '../containers/SignIn'
 
 const SideBar = ({user}) => {
-
-   console.log(user)
-
    return (
       <div className="sidebar">
          <img src={logo} className="App-logo" alt="logo" />
