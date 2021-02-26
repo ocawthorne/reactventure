@@ -116,3 +116,7 @@
 margin: 0;
 padding: 1px;
 }
+
+p.welcome {
+  font-size: 12px
+}
