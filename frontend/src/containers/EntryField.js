@@ -20,7 +20,7 @@ class EntryField extends Component {
       return (
          <form onSubmit={this.handleSubmit} className="entry-form">
             <input type="text" onChange={this.handleChange} value={this.props.command} className="entry text" disabled={!this.props.loggedIn}/>
-            <input type="submit" value="Develop the plot..." className="entry submit" />
+            <input type="submit" value="Develop the plot..." className="entry submit" disabled={!this.props.loggedIn} />
          </form>
       )
    }
