@@ -19,7 +19,7 @@ class EntryField extends Component {
    render() {
       return (
          <form onSubmit={this.handleSubmit} className="entry-form">
-            <input type="text" onChange={this.handleChange} value={this.props.command} className="entry text" disabled={false}/>
+            <input type="text" onChange={this.handleChange} value={this.props.command} className="entry text" disabled={!this.props.loggedIn}/>
             <input type="submit" value="Develop the plot..." className="entry submit" />
          </form>
       )
@@ -29,6 +29,7 @@ class EntryField extends Component {
 const mapStateToProps = state => {
    return {
       currentUser: state.auth.currentUser,
+      loggedIn: state.auth.loggedIn,
       userObjects: state.commands.userObjects,
       knownObjects: state.commands.knownObjects,
       userHistory: state.commands.userHistory,
