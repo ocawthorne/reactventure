@@ -86,8 +86,6 @@ export const logout = () => {
 }
 
 export const save = (user, hist=[], inventory=[], knownObjects=['crowbar','door','desk','drawer','paper','candle','chest'], brokenObjects=[], uniqueEvents={openedChest: false, meltedIce: false, completedGame: false}) => {
-   console.log('Save action initiated.')
-   if (!user) return null
    return dispatch => {
       fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
          method: 'POST',
