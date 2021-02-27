@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_26_175938) do
+ActiveRecord::Schema.define(version: 2021_02_27_002557) do
 
   create_table "entities", force: :cascade do |t|
     t.string "name"
@@ -38,7 +38,6 @@ ActiveRecord::Schema.define(version: 2021_02_26_175938) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "username"
-    t.string "hero"
     t.string "password_digest"
     t.text "inventory"
     t.text "history", limit: 2097151
