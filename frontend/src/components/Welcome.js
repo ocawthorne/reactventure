@@ -11,7 +11,8 @@ class Welcome extends React.Component {
          this.props.userHistory,
          this.props.inventory,
          this.props.knownObjects,
-         this.props.brokenObjects
+         this.props.brokenObjects,
+         this.props.uniqueEvents
       )
       alert('Game saved!')
    }
@@ -43,7 +44,8 @@ const mapStateToProps = state => {
       userHistory: state.commands.userHistory,
       inventory: state.commands.userObjects,
       knownObjects: state.commands.knownObjects,
-      brokenObjects: state.commands.brokenObjects
+      brokenObjects: state.commands.brokenObjects,
+      uniqueEvents: state.commands.uniqueEvents
    }
 }
 

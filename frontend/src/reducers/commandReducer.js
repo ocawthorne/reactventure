@@ -197,7 +197,8 @@ export const commandReducer = (state=defaultState, action) => {
             userHistory: action.payload.userHistory,
             userObjects: action.payload.userObjects,
             knownObjects: action.payload.knownObjects,
-            brokenObjects: action.payload.brokenObjects
+            brokenObjects: action.payload.brokenObjects,
+            uniqueEvents: action.payload.uniqueEvents
          }
       default:
          return state

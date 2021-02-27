@@ -10,7 +10,7 @@ User.delete_all
 Entity.delete_all
 EntityInteraction.delete_all
 
-User.create(username: "user", history: [], inventory: [], password: "password")
+User.create(username: "user", history: [], inventory: [], unique_events: {}, password: "password")
 
 #! DO NOT MODIFY BELOW HERE - This data is used for the story.
 #! The state in which the entities are initialised are in default state.

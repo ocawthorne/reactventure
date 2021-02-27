@@ -17,7 +17,14 @@ export const signup = (userData) => {
             currentUser: data.user
             }
          })
-         dispatch(save(data.user, [], [], ['crowbar','door','desk','drawer','paper','candle','chest'], [])) // Default values at beginning of game
+         dispatch(save(
+            data.user,
+            [],                                                          // History
+            [],                                                          // Inventory
+            ['crowbar','door','desk','drawer','paper','candle','chest'], // knownObjects
+            [],                                                          // brokenObjects
+            {openedChest: false, meltedIce: false, completedGame: false} // uniqueEvents
+         )) // Default values at beginning of game
       })
    }
 }
@@ -78,7 +85,7 @@ export const logout = () => {
    }
 }
 
-export const save = (user, hist=[], inventory=[], knownObjects=['crowbar','door','desk','drawer','paper','candle','chest'], brokenObjects=[]) => {
+export const save = (user, hist=[], inventory=[], knownObjects=['crowbar','door','desk','drawer','paper','candle','chest'], brokenObjects=[], uniqueEvents={openedChest: false, meltedIce: false, completedGame: false}) => {
    console.log('Save action initiated.')
    if (!user) return null
    return dispatch => {
@@ -92,7 +99,8 @@ export const save = (user, hist=[], inventory=[], knownObjects=['crowbar','door'
             history: hist,
             inventory: inventory,
             known_objects: knownObjects,
-            broken_objects: brokenObjects
+            broken_objects: brokenObjects,
+            unique_events: uniqueEvents
          })
       })
       .then(res => res.json())
@@ -104,7 +112,8 @@ export const save = (user, hist=[], inventory=[], knownObjects=['crowbar','door'
                userHistory: hist,
                userObjects: inventory,
                knownObjects,
-               brokenObjects
+               brokenObjects,
+               uniqueEvents
             }
          })
       })
@@ -131,7 +140,8 @@ export const retrieve = (user) => {
                userHistory: data.history,
                userObjects: data.inventory,
                knownObjects: data.known_objects,
-               brokenObjects: data.broken_objects
+               brokenObjects: data.broken_objects,
+               unique_events: data.uniqueEvents
                }
             })
       )

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_27_002557) do
+ActiveRecord::Schema.define(version: 2021_02_27_004836) do
 
   create_table "entities", force: :cascade do |t|
     t.string "name"
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 2021_02_27_002557) do
     t.text "history", limit: 2097151
     t.text "known_objects"
     t.text "broken_objects"
+    t.text "unique_events"
   end
 
 end
