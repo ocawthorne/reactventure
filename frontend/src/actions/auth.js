@@ -17,7 +17,7 @@ export const signup = (userData) => {
             currentUser: data.user
             }
          })
-         save(data.user, [], [], ['crowbar','door','desk','drawer','paper','candle','chest'], []) // Default values at beginning of game
+         dispatch(save(data.user, [], [], ['crowbar','door','desk','drawer','paper','candle','chest'], [])) // Default values at beginning of game
       })
    }
 }
@@ -45,7 +45,7 @@ export const login = (userData, history) => {
                }
             })
             history.push('/')
-            retrieve(data.user, dispatch)
+            dispatch(retrieve(data.user))
          }
       })
    }
@@ -80,6 +80,7 @@ export const logout = () => {
 
 export const save = (user, hist=[], inventory=[], knownObjects=['crowbar','door','desk','drawer','paper','candle','chest'], brokenObjects=[]) => {
    console.log('Save action initiated.')
+   if (!user) return null
    return dispatch => {
       fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
          method: 'POST',
@@ -99,6 +100,7 @@ export const save = (user, hist=[], inventory=[], knownObjects=['crowbar','door'
          dispatch({
             type: "USER_HISTORY_FETCH_SUCCESS",
             payload: {
+               currentUser: user,
                userHistory: hist,
                userObjects: inventory,
                knownObjects,
@@ -109,10 +111,10 @@ export const save = (user, hist=[], inventory=[], knownObjects=['crowbar','door'
    }
 }
 
-export const retrieve = (user, dispatch) => {
+export const retrieve = (user) => {
    console.log('Retrieve initiated.')
    console.log(user)
-   // return dispatch => {
+   return dispatch => {
       fetch(`http://localhost:3000/api/v1/users/${user.id}`, {
          credentials: "include",
          method: "GET",
@@ -125,6 +127,7 @@ export const retrieve = (user, dispatch) => {
       .then(data => dispatch({
             type: "USER_HISTORY_FETCH_SUCCESS",
             payload: {
+               currentUser: user,
                userHistory: data.history,
                userObjects: data.inventory,
                knownObjects: data.known_objects,
@@ -135,5 +138,5 @@ export const retrieve = (user, dispatch) => {
       .catch(error => {
          console.log("Error: ", error);
       })
-   // }
+   }
 }
