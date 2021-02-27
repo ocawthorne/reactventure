@@ -5,14 +5,22 @@ import { checkLoggedIn, logout, save, retrieve } from '../actions/auth'
 class Welcome extends React.Component {
 
    saveProgress = () => {
-      console.log('About to save progress')
       this.props.save(
          this.props.user,
+
          this.props.userHistory,
-         this.props.Inventory,
+         this.props.inventory,
          this.props.knownObjects,
          this.props.brokenObjects
       )
+      alert('Game saved!')
+   }
+
+   logoutConfirm = () => {
+      if (window.confirm('Are you sure you wish to log out? All unsaved progress will be lost!')) {
+         this.props.logout()
+         this.props.save({})
+      }
    }
 
    render() {
@@ -21,7 +29,7 @@ class Welcome extends React.Component {
             {this.props.loggedIn ? <p className="welcome">Welcome, {this.props.user.username}</p> : <p className="welcome">Welcome!<br />Please create an account to begin your adventure, or login to continue.</p>}
             {this.props.loggedIn && <button className="entry submit" onClick={this.saveProgress}>Save Progress</button>}
             <br /><br /><br />
-            {this.props.loggedIn && <button className="entry submit" onClick={() => this.props.logout()}>Log Out</button>}
+            {this.props.loggedIn && <button className="entry submit" onClick={() => this.logoutConfirm()}>Log Out</button>}
          </div>
       )
    }
