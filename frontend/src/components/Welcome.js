@@ -30,7 +30,7 @@ class Welcome extends React.Component {
             {this.props.loggedIn ? <p className="welcome">Welcome, {this.props.user.username}</p> : <p className="welcome">Welcome!<br />Please create an account to begin your adventure, or login to continue.</p>}
             {this.props.loggedIn && <button className="entry submit" onClick={this.saveProgress}>Save Progress</button>}
             <br /><br /><br />
-            {this.props.loggedIn && <button className="entry submit" onClick={() => this.logoutConfirm()}>Log Out</button>}
+            {this.props.loggedIn && <button className="entry submit" onClick={this.logoutConfirm}>Log Out</button>}
          </div>
       )
    }
